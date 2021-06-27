@@ -18,3 +18,9 @@ Content-Type: application/x-www-form-urlencoded
 id=99&content=new-element
 
 ###
+
+// gtr
+GET http://localhost:8881/test/list
+Accept: application/json
+
+###
