@@ -24,13 +24,13 @@
         <javaModelGenerator targetPackage="com.zzl.blogz.domain" targetProject="src\main\java">
         </javaModelGenerator>
         <!--生成映射文件存放位置-->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src\main\java">
+        <sqlMapGenerator targetPackage="mapper" targetProject="src\main\resources">
         </sqlMapGenerator>
         <!--生成mapper类存放位置-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.zzl.blogz.mapper"
                              targetProject="src\main\java">
         </javaClientGenerator>
-        <table tableName="test" domainObjectName="Test">
-        </table>
+<!--        <table tableName="test" domainObjectName="Test"></table>-->
+        <table tableName="ebook" domainObjectName="Ebook"></table>
     </context>
 </generatorConfiguration>
