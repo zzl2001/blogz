@@ -5,11 +5,10 @@ import com.zzl.blogz.domain.EbookExample;
 import com.zzl.blogz.mapper.EbookMapper;
 import com.zzl.blogz.req.EbookReq;
 import com.zzl.blogz.resp.EbookResp;
-import org.springframework.beans.BeanUtils;
+import com.zzl.blogz.util.CopyUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,13 +30,15 @@ public class EbookService {
         criteria.andNameLike("%"+ebookReq.getName()+"%");//模糊查询
         List<Ebook> ebookList = ebookMapper.selectByExample(ebookExample);//以这个方式查询
 
-        List<EbookResp> ebookRespList = new ArrayList<>();
-        for (Ebook ebook: ebookList){
-            EbookResp ebookResp = new EbookResp();
-            BeanUtils.copyProperties(ebook, ebookResp);
-            ebookRespList.add(ebookResp);
-        }
+//        List<EbookResp> ebookRespList = new ArrayList<>();
+//        for (Ebook ebook: ebookList){
+////            EbookResp ebookResp = new EbookResp();
+////            BeanUtils.copyProperties(ebook, ebookResp);
+//            EbookResp ebookResp = CopyUtil.copy(ebook, EbookResp.class);
+//            ebookRespList.add(ebookResp);
+//        }
 
+        List<EbookResp> ebookRespList = CopyUtil.copyList(ebookList, EbookResp.class);
         return ebookRespList;
     }
 
