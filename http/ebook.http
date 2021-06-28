@@ -3,3 +3,7 @@ GET http://localhost:8881/ebook/list
 Accept: application/json
 
 ###
+GET http://localhost:8881/ebook/list1?name=教程
+Accept: application/json
+
+###
