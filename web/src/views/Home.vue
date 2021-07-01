@@ -56,6 +56,8 @@
 <script lang="ts">
   import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue';
   import { defineComponent, ref } from 'vue';
+  import axios from 'axios';
+
   export default defineComponent({
     components: {
       UserOutlined,
@@ -63,11 +65,15 @@
       NotificationOutlined,
     },
     setup() {
-      return {
-        selectedKeys1: ref<string[]>(['2']),
-        selectedKeys2: ref<string[]>(['1']),
-        openKeys: ref<string[]>(['sub1']),
-      };
+      axios.get("http://localhost:8881/ebook/list1?name=教程").then(
+              (response) => {
+                console.log(response)
+              })
+      // return {
+      //   selectedKeys1: ref<string[]>(['2']),
+      //   selectedKeys2: ref<string[]>(['1']),
+      //   openKeys: ref<string[]>(['sub1']),
+      // };
     },
   });
 </script>
