@@ -47,7 +47,7 @@
         </a-menu>
       </a-layout-sider>
       <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
-        Content
+        <pre>{{ebooks}} {{ebooks2}}</pre>
       </a-layout-content>
     </a-layout>
   </a-layout-content>
@@ -55,7 +55,7 @@
 
 <script lang="ts">
   import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue';
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, onMounted, reactive, toRef } from 'vue';
   import axios from 'axios';
 
   export default defineComponent({
@@ -65,10 +65,23 @@
       NotificationOutlined,
     },
     setup() {
-      axios.get("http://localhost:8881/ebook/list1?name=教程").then(
-              (response) => {
-                console.log(response)
-              })
+      const ebooks = ref();
+      const ebooks1 = reactive({
+          books: []
+      });
+      onMounted(()=>{
+        axios.get("http://localhost:8881/ebook/list1?name=教程").then(
+                (response) => {
+                  const data = response.data;
+                  ebooks.value = data.content;
+                  ebooks1.books = data.content;
+                  console.log(response)
+                });
+      });
+      return {
+        ebooks,
+        ebooks2: toRef(ebooks1, "books")
+      }
       // return {
       //   selectedKeys1: ref<string[]>(['2']),
       //   selectedKeys2: ref<string[]>(['1']),
